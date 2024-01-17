@@ -28,6 +28,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: formValues.name,
         about: formValues.about,
@@ -39,6 +40,7 @@ class Api {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: this._headers,
+      credentials: 'include',
     })
       .then(this.onResponse)
       .then((res) => {
@@ -52,6 +54,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: inputName,
         about: inputInfo,
@@ -63,6 +66,7 @@ class Api {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: name,
         link: link,
@@ -76,6 +80,7 @@ class Api {
     return fetch(`${this._url}/cards/${_id}`, {
       method: 'DELETE',
       headers: this._headers,
+      credentials: 'include',
     }).then(this.onResponse);
   }
 
@@ -83,6 +88,7 @@ class Api {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: isLiked ? 'DELETE' : 'PUT',
       headers: this._headers,
+      credentials: 'include',
     }).then((res) => {
       return this.onResponse(res);
     });
@@ -92,6 +98,7 @@ class Api {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         avatar: link,
       }),
@@ -101,9 +108,10 @@ class Api {
 
 const api = new Api({
   baseUrl: 'api.borove4ik.nomoredomainsmonster.ru',
+  credentials: 'include',
   headers: {
-    authorization: '25e7eed6-78e7-4fdc-b7c0-c962e01ad60d',
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
   },
 });
 
