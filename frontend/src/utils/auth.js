@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = 'https://api.borove4ik.nomoredomainsmonster.ru/';
 
 export const validateResponse = (res) => {
   return res.ok
