@@ -8,6 +8,7 @@ const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const cookieParser = require('cookie-parser');
 const auth = require('./middlewares/auth');
+const cors = require('cors')
 const {createUser, login} = require('./controllers/users');
 const { errors } = require('celebrate')
 const { signUpValidation, signInValidation} = require('./middlewares/celebrateValidation');
@@ -29,6 +30,8 @@ app.use(
     extended: true,
   })
 );
+
+app.use(cors())
 
 app.use(requestLogger)
 
