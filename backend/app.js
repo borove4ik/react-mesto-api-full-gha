@@ -15,7 +15,7 @@ const { signUpValidation, signInValidation} = require('./middlewares/celebrateVa
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 
-const { PORT = 3000 } = process.env;
+const { PORT = 80 } = process.env;
 
 const statuses = require('./utils/statusCodes');
 const { celebrate } = require('celebrate');
