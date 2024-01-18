@@ -1,4 +1,4 @@
-export const BASE_URL = 'api.borove4ik.nomoredomainsmonster.ru';
+export const BASE_URL = 'https://api.borove4ik.nomoredomainsmonster.ru';
 // export const BASE_URL = 'http://localhost:3000';
 
 

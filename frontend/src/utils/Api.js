@@ -108,7 +108,7 @@ class Api {
 
 const api = new Api({
   // baseUrl: 'http://localhost:3000',
-  baseUrl: 'api.borove4ik.nomoredomainsmonster.ru',
+  baseUrl: 'https://api.borove4ik.nomoredomainsmonster.ru',
   credentials: 'include',
   headers: {
     'Content-Type': 'application/json',
