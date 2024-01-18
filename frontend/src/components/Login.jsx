@@ -8,7 +8,6 @@ const Login = ({ onLogIn, saveEmail }) => {
     e.preventDefault();
     onLogIn(userEmail, userPassword);
     saveEmail(userEmail);
-    console.log("userEmail", userEmail);
   };
 
   return (

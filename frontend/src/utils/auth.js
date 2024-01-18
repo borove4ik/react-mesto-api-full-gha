@@ -1,4 +1,6 @@
 export const BASE_URL = 'https://api.borove4ik.nomoredomainsmonster.ru/';
+// export const BASE_URL = 'http://localhost:3000';
+
 
 export const validateResponse = (res) => {
   return res.ok
@@ -22,6 +24,7 @@ export const register = (email, password) => {
 export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
+    credentials: 'include',
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -30,13 +33,14 @@ export const login = (email, password) => {
   }).then(validateResponse);
 };
 
-export const checkToken = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
+export const logout = () => {
+  return fetch(`${BASE_URL}/signout`, {
     method: "GET",
+    credentials: 'include',
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
-  }).then(validateResponse);
-};
+    })
+    .then(validateResponse);
+}

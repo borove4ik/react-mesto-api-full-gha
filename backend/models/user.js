@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
+    default: 'https://news.store.rambler.ru/img/672e5f7081bbc3d9746ee83dd6230ff0?img-1-resize=width%3A1280%2Cheight%3A1280%2Cfit%3Acover&img-format=auto',
     validate: {
       validator: (v) => isURL(v),
       message: 'Неправильный формат ссылки',

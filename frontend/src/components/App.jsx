@@ -81,7 +81,7 @@ function App() {
   };
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((id) => id === currentUser._id);
 
     api
       .changeLike(card._id, isLiked)
@@ -159,21 +159,6 @@ function App() {
       });
   };
 
-  const handleTokenCheck = (jwt) => {
-    auth
-      .checkToken(jwt)
-      .then((res) => {
-        if (res) {
-          setUserEmail(res.data.email);
-          setLoggedIn(true);
-          navigate("/", { replace: true });
-        }
-      })
-      .catch((err) => {
-        console.log(`Ошибка проверки входа пользователя: ${err}`);
-      });
-  };
-
   const handleLogIn = (email, password) => {
     auth
       .login(email, password)
@@ -191,13 +176,6 @@ function App() {
         setIsSucceeded(false);
       });
   };
-
-  React.useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      handleTokenCheck(jwt);
-    }
-  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

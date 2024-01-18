@@ -1,9 +1,9 @@
 class Api {
-  constructor({ baseUrl, headers }) {
-    this._url = baseUrl;
-    this._headers = headers;
-    this.getInfoResponse = null;
-    this.getCardsResponse = null;
+  constructor(configs) {
+    this._url = configs.baseUrl;
+    this._headers = configs.headers;
+    // this.getInfoResponse = null;
+    // this.getCardsResponse = null;
   }
 
   onResponse(res) {
@@ -13,7 +13,8 @@ class Api {
   getInfo() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this._headers,
+      // headers: this._headers,
+      credentials: 'include',
     })
       .then((res) => {
         return this.onResponse(res);
@@ -50,7 +51,6 @@ class Api {
   }
 
   setInfo({ inputName, inputInfo }) {
-    console.log({ inputName, inputInfo });
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -107,6 +107,7 @@ class Api {
 }
 
 const api = new Api({
+  // baseUrl: 'http://localhost:3000',
   baseUrl: 'https://api.borove4ik.nomoredomainsmonster.ru',
   credentials: 'include',
   headers: {

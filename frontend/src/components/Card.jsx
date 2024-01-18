@@ -5,8 +5,10 @@ import deleteButton from "../images/Trash.svg";
 const Card = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const isOwn = props.card.owner._id === currentUser._id;
-  const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
+  const isOwn = props.card.owner === currentUser._id;
+
+  const isLiked = props.card.likes.some((id) => id === currentUser._id);
+
   const handleClick = () => {
     props.onCardClick(props.card);
   };

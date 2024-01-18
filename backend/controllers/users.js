@@ -50,6 +50,7 @@ const getUserById = (req, res, userData, next) => {
       about: user.about,
       avatar: user.avatar,
       email: user.email,
+      _id: user._id,
     }))
     .catch((error) => next(error));
 };
@@ -69,8 +70,8 @@ module.exports.updateUser = async (req, res, next) => {
   const { name, about } = req.body;
   User
     .findByIdAndUpdate({ _id }, { name, about }, { new: true, runValidators: true })
-    .then(() => {
-      res.status(statuses.OK_REQUEST).send({ _id, name, about });
+    .then((user) => {
+      res.status(statuses.OK_REQUEST).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -85,8 +86,8 @@ module.exports.updateAvatar = async (req, res, next) => {
   const { avatar } = req.body;
   User
     .findByIdAndUpdate({ _id }, { avatar }, { new: true, runValidators: true })
-    .then(() => {
-      res.status(statuses.OK_REQUEST).send({ _id, avatar });
+    .then((user) => {
+      res.status(statuses.OK_REQUEST).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -108,7 +109,7 @@ module.exports.login = async (req, res, next) => {
     return next(new UnauthorizedError('Неверный пароль'));
   }
   const token = generateToken({ _id: foundUser._id });
-  res.cookie('authToken', token, {
+  res.cookie('jwt', token, {
     maxAge: 3600000 * 24 * 7,
     httpOnly: true,
     sameSite: true,
@@ -119,5 +120,6 @@ module.exports.login = async (req, res, next) => {
     about: foundUser.about,
     name: foundUser.email,
     avatar: foundUser.avatar,
+    _id: foundUser._id,
   });
 };
