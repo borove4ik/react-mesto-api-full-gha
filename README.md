@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 84.201.154.246
 
-Frontend https://...
+Frontend https://borove4ik.nomoredomainsmonster.ru
 
-Backend https://...
+Backend https://api.borove4ik.nomoredomainsmonster.ru
