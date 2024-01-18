@@ -1,6 +1,8 @@
 const allowedCors = [
   'http://borove4ik.nomoredomainsmonster.ru',
   'https://borove4ik.nomoredomainsmonster.ru',
+  'http://api.borove4ik.nomoredomainsmonster.ru',
+  'https://api.borove4ik.nomoredomainsmonster.ru',
   'http://localhost:3000',
   'https://localhost:3000',
   'http://127.0.0.1:3000',
@@ -22,7 +24,6 @@ const cors = (req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
   res.header('Access-Control-Allow-Credentials', true);
-  res.send(origin);
 
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
