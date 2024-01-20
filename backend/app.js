@@ -52,7 +52,7 @@ app.post('/signin', signInValidation, login );
 app.post('/signup', signUpValidation, createUser);
 
 
-app.all('*', (req, res, next) => {
+app.all('*', auth,(req, res, next) => {
  next(new NotFoundError('Запрашиваемый ресурс не найден'))
 })
 
