@@ -98,28 +98,35 @@ module.exports.updateAvatar = async (req, res, next) => {
 };
 
 module.exports.login = async (req, res, next) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  const foundUser = await User.findOne({ email }).select('+password');
-  if (!foundUser) {
-    return next(new UnauthorizedError('пользователь с таким email не найден'));
+    const foundUser = await User.findOne({ email }).select('+password');
+    if (!foundUser) {
+      return next(new UnauthorizedError('пользователь с таким email не найден'));
+    }
+    const compareResult = await bcrypt.compare(password, foundUser.password);
+    if (!compareResult) {
+      return next(new UnauthorizedError('Неверный пароль'));
+    }
+    const token = generateToken({ _id: foundUser._id });
+    res.cookie('jwt', token, {
+      maxAge: 3600000 * 24 * 7,
+      httpOnly: true,
+      sameSite: true,
+      secure: false,
+    });
+    return res.send({
+      email: foundUser.email,
+      about: foundUser.about,
+      name: foundUser.email,
+      avatar: foundUser.avatar,
+      _id: foundUser._id,
+    });
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      return next(new BadRequestError('Не удалось войти'));
+    }
+    return next(err);
   }
-  const compareResult = await bcrypt.compare(password, foundUser.password);
-  if (!compareResult) {
-    return next(new UnauthorizedError('Неверный пароль'));
-  }
-  const token = generateToken({ _id: foundUser._id });
-  res.cookie('jwt', token, {
-    maxAge: 3600000 * 24 * 7,
-    httpOnly: true,
-    sameSite: true,
-    secure: false,
-  });
-  return res.send({
-    email: foundUser.email,
-    about: foundUser.about,
-    name: foundUser.email,
-    avatar: foundUser.avatar,
-    _id: foundUser._id,
-  });
 };
