@@ -1,6 +1,6 @@
 [![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
-Mesto [frontend](https://github.com/borove4ik/react-mesto-auth) and [backend](https://github.com/borove4ik/express-mesto-gha)
+# Mesto [frontend](https://github.com/borove4ik/react-mesto-auth) and [backend](https://github.com/borove4ik/express-mesto-gha)
 
 Финальная часть проекта Mesto, включающего в себя фронтенд и бекенд части.
 
@@ -13,3 +13,6 @@ IP 84.201.154.246
 Frontend https://borove4ik.nomoredomainsmonster.ru
 
 Backend https://api.borove4ik.nomoredomainsmonster.ru
+
+# Статус проекта и планы
+на данный момент проект завершён. Планируется добавить тоггл с переключением темы оформления.
